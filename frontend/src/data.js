@@ -1,6 +1,7 @@
 export default  {
     products: [
         {
+            _id: '1',
             name: "Slom Shirt",
             category: 'Shirt',
             image: '/images/d1.jpg',
@@ -10,6 +11,7 @@ export default  {
             numReviews: 10
         },
         {
+            _id: '2',
             name: "Fit Shirt",
             category: 'Shirt',
             image: '/images/d1.jpg',
@@ -19,6 +21,7 @@ export default  {
             numReviews: 4
         },
         {
+            _id: '3',
             name: "Slom Shirt",
             category: 'Pants',
             image: '/images/d1.jpg',
@@ -28,6 +31,7 @@ export default  {
             numReviews: 6
         },
         {
+            _id: '4',
             name: "Slom Shirt",
             category: 'Pants',
             image: '/images/d1.jpg',
