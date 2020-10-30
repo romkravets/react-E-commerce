@@ -20,31 +20,32 @@ function ProductsScreen(props) {
   const productSave = useSelector(state => state.productSave);
   const { loading: loadingSave, success: successSave, error: errorSave } = productSave;
 
-  // const productDelete = useSelector(state => state.productDelete);
-  // const { loading: loadingDelete, success: successDelete, error: errorDelete } = productDelete;
+  const productDelete = useSelector(state => state.productDelete);
+  const { loading: loadingDelete, success: successDelete, error: errorDelete } = productDelete;
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // if (successSave) {
-    //   setModalVisible(false);
-    // }
-    // dispatch(listProducts());
+    if (successSave) {
+      setModalVisible(false);
+    }
+    dispatch(listProducts());
     return () => {
       //
     };
-  }, []);
+  }, [successSave, successDelete]);
 
-  // const openModal = (product) => {
-  //   setModalVisible(true);
-  //   setId(product._id);
-  //   setName(product.name);
-  //   setPrice(product.price);
-  //   setDescription(product.description);
-  //   setImage(product.image);
-  //   setBrand(product.brand);
-  //   setCategory(product.category);
-  //   setCountInStock(product.countInStock);
-  // }
+  const openModal = (product) => {
+    setModalVisible(true);
+    setId(product._id);
+    setName(product.name);
+    setPrice(product.price);
+    setDescription(product.description);
+    setImage(product.image);
+    setBrand(product.brand);
+    setCategory(product.category);
+    setCountInStock(product.countInStock);
+  }
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveProduct({
@@ -53,16 +54,18 @@ function ProductsScreen(props) {
       countInStock, description
     }));
   }
-  // const deleteHandler = (product) => {
-  //   dispatch(deleteProdcut(product._id));
-  // }
+
+  const deleteHandler = (product) => {
+    dispatch(deleteProdcut(product._id));
+  }
+
   return <div className="content content-margined">
 
     <div className="product-header">
       <h3>Products</h3>
-      {/* <button className="button primary" onClick={() => openModal({})}>Create Product</button> */}
+      <button className="button primary" onClick={() => openModal({})}>Create Product</button>
     </div>
-    {/* {modalVisible && */}
+    {modalVisible &&
       <div className="form">
         <form onSubmit={submitHandler} >
           <ul className="form-container">
@@ -131,7 +134,7 @@ function ProductsScreen(props) {
           </ul>
         </form>
       </div>
-    {/* } */}
+     }
 
 
     <div className="product-list">
@@ -148,7 +151,7 @@ function ProductsScreen(props) {
           </tr>
         </thead>
         <tbody>
-          {/* {products.map(product => (<tr key={product._id}>
+          {products.map(product => (<tr key={product._id}>
             <td>{product._id}</td>
             <td>{product.name}</td>
             <td>{product.price}</td>
@@ -159,7 +162,7 @@ function ProductsScreen(props) {
               {' '}
               <button className="button" onClick={() => deleteHandler(product)} >Delete</button>
             </td>
-          </tr>))} */}
+          </tr>))}
         </tbody>
       </table>
 
